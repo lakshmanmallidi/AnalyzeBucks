@@ -1,0 +1,1280 @@
+(dp0
+S'America/Rainy River (CDT)'
+p1
+I-18000
+sS'America/St Kitts (AST)'
+p2
+I-14400
+sS'America/Anguilla (AST)'
+p3
+I-14400
+sS'Asia/Vientiane (+07)'
+p4
+I25200
+sS'Asia/Tokyo (JST)'
+p5
+I32400
+sS'Asia/Jerusalem (IDT)'
+p6
+I10800
+sS'Europe/Kaliningrad (EET)'
+p7
+I7200
+sS'America/Argentina/Rio Gallegos (-03)'
+p8
+I-10800
+sS'America/Eirunepe (-05)'
+p9
+I-18000
+sS'Asia/Ho Chi Minh (+07)'
+p10
+I25200
+sS'America/Denver (MDT)'
+p11
+I-21600
+sS'Africa/Ceuta (CEST)'
+p12
+I7200
+sS'America/Chicago (CDT)'
+p13
+I-18000
+sS'America/Winnipeg (CDT)'
+p14
+I-18000
+sS'America/Curacao (AST)'
+p15
+I-14400
+sS'America/Guadeloupe (AST)'
+p16
+I-14400
+sS'Atlantic/Reykjavik (GMT)'
+p17
+I0
+sS'Europe/Malta (CEST)'
+p18
+I7200
+sS'America/Indiana/Vincennes (EDT)'
+p19
+I-14400
+sS'Europe/Vaduz (CEST)'
+p20
+I7200
+sS'Asia/Gaza (EEST)'
+p21
+I10800
+sS'America/Cancun (EST)'
+p22
+I-18000
+sS'America/Matamoros (CDT)'
+p23
+I-18000
+sS'Pacific/Honolulu (HST)'
+p24
+I-36000
+sS'Asia/Urumqi (+06)'
+p25
+I21600
+sS'Pacific/Auckland (NZST)'
+p26
+I43200
+sS'Europe/Kirov (+03)'
+p27
+I10800
+sS'Africa/Cairo (EET)'
+p28
+I7200
+sS'America/Araguaina (-03)'
+p29
+I-10800
+sS'America/Managua (CST)'
+p30
+I-21600
+sS'America/Dawson Creek (MST)'
+p31
+I-25200
+sS'Pacific/Rarotonga (-10)'
+p32
+I-36000
+sS'Australia/Broken Hill (ACST)'
+p33
+I34200
+sS'Pacific/Kiritimati (+14)'
+p34
+I50400
+sS'America/St Barthelemy (AST)'
+p35
+I-14400
+sS'Pacific/Chuuk (+10)'
+p36
+I36000
+sS'Africa/Mbabane (SAST)'
+p37
+I7200
+sS'America/Blanc-Sablon (AST)'
+p38
+I-14400
+sS'America/Tijuana (PDT)'
+p39
+I-25200
+sS'America/Argentina/La Rioja (-03)'
+p40
+I-10800
+sS'Pacific/Pitcairn (-08)'
+p41
+I-28800
+sS'America/Kralendijk (AST)'
+p42
+I-14400
+sS'Asia/Phnom Penh (+07)'
+p43
+I25200
+sS'America/Boa Vista (-04)'
+p44
+I-14400
+sS'Europe/Gibraltar (CEST)'
+p45
+I7200
+sS'Pacific/Tahiti (-10)'
+p46
+I-36000
+sS'Asia/Irkutsk (+08)'
+p47
+I28800
+sS'America/Lower Princes (AST)'
+p48
+I-14400
+sS'Pacific/Efate (+11)'
+p49
+I39600
+sS'Australia/Lindeman (AEST)'
+p50
+I36000
+sS'America/Detroit (EDT)'
+p51
+I-14400
+sS'America/Indiana/Marengo (EDT)'
+p52
+I-14400
+sS'Africa/Asmara (EAT)'
+p53
+I10800
+sS'Africa/Luanda (WAT)'
+p54
+I3600
+sS'America/Anchorage (AKDT)'
+p55
+I-28800
+sS'Pacific/Palau (+09)'
+p56
+I32400
+sS'Africa/Juba (EAT)'
+p57
+I10800
+sS'Indian/Comoro (EAT)'
+p58
+I10800
+sS'Africa/Niamey (WAT)'
+p59
+I3600
+sS'America/Fortaleza (-03)'
+p60
+I-10800
+sS'Australia/Hobart (AEST)'
+p61
+I36000
+sS'Pacific/Nauru (+12)'
+p62
+I43200
+sS'Europe/Lisbon (WEST)'
+p63
+I3600
+sS'Africa/Ouagadougou (GMT)'
+p64
+I0
+sS'America/Sao Paulo (-03)'
+p65
+I-10800
+sS'Africa/Bamako (GMT)'
+p66
+I0
+sS'Asia/Yerevan (+04)'
+p67
+I14400
+sS'America/Cambridge Bay (MDT)'
+p68
+I-21600
+sS'Asia/Tashkent (+05)'
+p69
+I18000
+sS'America/Manaus (-04)'
+p70
+I-14400
+sS'America/Argentina/Catamarca (-03)'
+p71
+I-10800
+sS'Asia/Baghdad (+03)'
+p72
+I10800
+sS'Asia/Novosibirsk (+07)'
+p73
+I25200
+sS'Atlantic/Bermuda (ADT)'
+p74
+I-10800
+sS'Indian/Maldives (+05)'
+p75
+I18000
+sS'Africa/Douala (WAT)'
+p76
+I3600
+sS'America/Metlakatla (AKDT)'
+p77
+I-28800
+sS'Asia/Shanghai (CST)'
+p78
+I28800
+sS'Pacific/Chatham (+1245)'
+p79
+I45900
+sS'America/Santo Domingo (AST)'
+p80
+I-14400
+sS'Indian/Kerguelen (+05)'
+p81
+I18000
+sS'Africa/Brazzaville (WAT)'
+p82
+I3600
+sS'America/Rio Branco (-05)'
+p83
+I-18000
+sS'Europe/Uzhgorod (EEST)'
+p84
+I10800
+sS'Africa/Harare (CAT)'
+p85
+I7200
+sS'America/Argentina/Ushuaia (-03)'
+p86
+I-10800
+sS'Pacific/Norfolk (+11)'
+p87
+I39600
+sS'Europe/Kiev (EEST)'
+p88
+I10800
+sS'Antarctica/Casey (+08)'
+p89
+I28800
+sS'Atlantic/South Georgia (-02)'
+p90
+I-7200
+sS'America/North Dakota/New Salem (CDT)'
+p91
+I-18000
+sS'Asia/Qyzylorda (+05)'
+p92
+I18000
+sS'America/Danmarkshavn (GMT)'
+p93
+I0
+sS'Africa/Ndjamena (WAT)'
+p94
+I3600
+sS'Australia/Lord Howe (+1030)'
+p95
+I37800
+sS'America/Juneau (AKDT)'
+p96
+I-28800
+sS'Africa/Johannesburg (SAST)'
+p97
+I7200
+sS'Pacific/Kwajalein (+12)'
+p98
+I43200
+sS'Asia/Thimphu (+06)'
+p99
+I21600
+sS'Europe/Vilnius (EEST)'
+p100
+I10800
+sS'Pacific/Wake (+12)'
+p101
+I43200
+sS'America/North Dakota/Center (CDT)'
+p102
+I-18000
+sS'Asia/Oral (+05)'
+p103
+I18000
+sS'Europe/Podgorica (CEST)'
+p104
+I7200
+sS'Europe/Brussels (CEST)'
+p105
+I7200
+sS'America/Halifax (ADT)'
+p106
+I-10800
+sS'Asia/Magadan (+11)'
+p107
+I39600
+sS'America/La Paz (-04)'
+p108
+I-14400
+sS'Europe/Bucharest (EEST)'
+p109
+I10800
+sS'Africa/Lagos (WAT)'
+p110
+I3600
+sS'Asia/Bangkok (+07)'
+p111
+I25200
+sS'Africa/Bissau (GMT)'
+p112
+I0
+sS'Asia/Anadyr (+12)'
+p113
+I43200
+sS'Asia/Dhaka (+06)'
+p114
+I21600
+sS'Pacific/Wallis (+12)'
+p115
+I43200
+sS'Asia/Ulaanbaatar (+08)'
+p116
+I28800
+sS'Africa/Lusaka (CAT)'
+p117
+I7200
+sS'America/Kentucky/Louisville (EDT)'
+p118
+I-14400
+sS'America/Tortola (AST)'
+p119
+I-14400
+sS'America/Glace Bay (ADT)'
+p120
+I-10800
+sS'America/Fort Nelson (MST)'
+p121
+I-25200
+sS'Europe/Ulyanovsk (+04)'
+p122
+I14400
+sS'Australia/Currie (AEST)'
+p123
+I36000
+sS'Pacific/Funafuti (+12)'
+p124
+I43200
+sS'Asia/Bishkek (+06)'
+p125
+I21600
+sS'America/Barbados (AST)'
+p126
+I-14400
+sS'Pacific/Gambier (-09)'
+p127
+I-32400
+sS'America/Montevideo (-03)'
+p128
+I-10800
+sS'America/Guayaquil (-05)'
+p129
+I-18000
+sS'Antarctica/Palmer (-03)'
+p130
+I-10800
+sS'Asia/Kabul (+0430)'
+p131
+I16200
+sS'America/Argentina/Mendoza (-03)'
+p132
+I-10800
+sS'Antarctica/Mawson (+05)'
+p133
+I18000
+sS'Africa/Casablanca (+01)'
+p134
+I3600
+sS'Asia/Ashgabat (+05)'
+p135
+I18000
+sS'Europe/Belgrade (CEST)'
+p136
+I7200
+sS'Europe/Athens (EEST)'
+p137
+I10800
+sS'America/Noronha (-02)'
+p138
+I-7200
+sS'Europe/Madrid (CEST)'
+p139
+I7200
+sS'Africa/Lubumbashi (CAT)'
+p140
+I7200
+sS'Antarctica/McMurdo (NZST)'
+p141
+I43200
+sS'Antarctica/Davis (+07)'
+p142
+I25200
+sS'Asia/Dili (+09)'
+p143
+I32400
+sS'America/Grenada (AST)'
+p144
+I-14400
+sS'America/Costa Rica (CST)'
+p145
+I-21600
+sS'Pacific/Easter (-06)'
+p146
+I-21600
+sS'America/St Johns (NDT)'
+p147
+I-9000
+sS'Africa/Maseru (SAST)'
+p148
+I7200
+sS'Asia/Dubai (+04)'
+p149
+I14400
+sS'Africa/Tripoli (EET)'
+p150
+I7200
+sS'Asia/Tomsk (+07)'
+p151
+I25200
+sS'Africa/Malabo (WAT)'
+p152
+I3600
+sS'America/Paramaribo (-03)'
+p153
+I-10800
+sS'Asia/Barnaul (+07)'
+p154
+I25200
+sS'Asia/Tbilisi (+04)'
+p155
+I14400
+sS'Asia/Yangon (+0630)'
+p156
+I23400
+sS'Europe/Busingen (CEST)'
+p157
+I7200
+sS'Asia/Brunei (+08)'
+p158
+I28800
+sS'America/Inuvik (MDT)'
+p159
+I-21600
+sS'Pacific/Midway (SST)'
+p160
+I-39600
+sS'Asia/Tehran (+0430)'
+p161
+I16200
+sS'America/Menominee (CDT)'
+p162
+I-18000
+sS'Africa/Porto-Novo (WAT)'
+p163
+I3600
+sS'Europe/Mariehamn (EEST)'
+p164
+I10800
+sS'Africa/Dar es Salaam (EAT)'
+p165
+I10800
+sS'Pacific/Guadalcanal (+11)'
+p166
+I39600
+sS'America/Argentina/Tucuman (-03)'
+p167
+I-10800
+sS'Europe/Oslo (CEST)'
+p168
+I7200
+sS'Pacific/Pohnpei (+11)'
+p169
+I39600
+sS'Europe/Andorra (CEST)'
+p170
+I7200
+sS'Asia/Yekaterinburg (+05)'
+p171
+I18000
+sS'Europe/Helsinki (EEST)'
+p172
+I10800
+sS'Pacific/Fiji (+12)'
+p173
+I43200
+sS'America/Bahia (-03)'
+p174
+I-10800
+sS'America/Jamaica (EST)'
+p175
+I-18000
+sS'Africa/Khartoum (CAT)'
+p176
+I7200
+sS'America/Argentina/Buenos Aires (-03)'
+p177
+I-10800
+sS'Asia/Hebron (EEST)'
+p178
+I10800
+sS'Europe/Zurich (CEST)'
+p179
+I7200
+sS'Asia/Hong Kong (HKT)'
+p180
+I28800
+sS'Asia/Kuching (+08)'
+p181
+I28800
+sS'Europe/Vatican (CEST)'
+p182
+I7200
+sS'Europe/Prague (CEST)'
+p183
+I7200
+sS'America/Scoresbysund (+00)'
+p184
+I0
+sS'Africa/Blantyre (CAT)'
+p185
+I7200
+sS'America/Goose Bay (ADT)'
+p186
+I-10800
+sS'Pacific/Majuro (+12)'
+p187
+I43200
+sS'Asia/Kuala Lumpur (+08)'
+p188
+I28800
+sS'America/Creston (MST)'
+p189
+I-25200
+sS'Asia/Baku (+04)'
+p190
+I14400
+sS'America/Campo Grande (-04)'
+p191
+I-14400
+sS'America/Argentina/Cordoba (-03)'
+p192
+I-10800
+sS'America/Argentina/Salta (-03)'
+p193
+I-10800
+sS'Asia/Kathmandu (+0545)'
+p194
+I20700
+sS'Europe/Guernsey (BST)'
+p195
+I3600
+sS'Europe/Amsterdam (CEST)'
+p196
+I7200
+sS'Europe/Samara (+04)'
+p197
+I14400
+sS'Pacific/Niue (-11)'
+p198
+I-39600
+sS'America/Cayenne (-03)'
+p199
+I-10800
+sS'Indian/Mahe (+04)'
+p200
+I14400
+sS'America/St Thomas (AST)'
+p201
+I-14400
+sS'America/Guatemala (CST)'
+p202
+I-21600
+sS'Asia/Aqtobe (+05)'
+p203
+I18000
+sS'Europe/Warsaw (CEST)'
+p204
+I7200
+sS'Atlantic/St Helena (GMT)'
+p205
+I0
+sS'Asia/Macau (CST)'
+p206
+I28800
+sS'Indian/Mayotte (EAT)'
+p207
+I10800
+sS'Asia/Yakutsk (+09)'
+p208
+I32400
+sS'Pacific/Noumea (+11)'
+p209
+I39600
+sS'Atlantic/Azores (+00)'
+p210
+I0
+sS'Europe/Minsk (+03)'
+p211
+I10800
+sS'America/Lima (-05)'
+p212
+I-18000
+sS'Europe/Riga (EEST)'
+p213
+I10800
+sS'Asia/Omsk (+06)'
+p214
+I21600
+sS'Pacific/Apia (+13)'
+p215
+I46800
+sS'America/Indiana/Vevay (EDT)'
+p216
+I-14400
+sS'Asia/Atyrau (+05)'
+p217
+I18000
+sS'America/Pangnirtung (EDT)'
+p218
+I-14400
+sS'Africa/Maputo (CAT)'
+p219
+I7200
+sS'Atlantic/Cape Verde (-01)'
+p220
+I-3600
+sS'Europe/Vienna (CEST)'
+p221
+I7200
+sS'America/Vancouver (PDT)'
+p222
+I-25200
+sS'Africa/Kinshasa (WAT)'
+p223
+I3600
+sS'Europe/Bratislava (CEST)'
+p224
+I7200
+sS'America/Mazatlan (MDT)'
+p225
+I-21600
+sS'Antarctica/Syowa (+03)'
+p226
+I10800
+sS'Europe/Ljubljana (CEST)'
+p227
+I7200
+sS'America/Nassau (EDT)'
+p228
+I-14400
+sS'Antarctica/DumontDUrville (+10)'
+p229
+I36000
+sS'America/Belem (-03)'
+p230
+I-10800
+sS'Africa/Windhoek (CAT)'
+p231
+I7200
+sS'Africa/Bujumbura (CAT)'
+p232
+I7200
+sS'Pacific/Enderbury (+13)'
+p233
+I46800
+sS'America/Indiana/Knox (CDT)'
+p234
+I-18000
+sS'Europe/Paris (CEST)'
+p235
+I7200
+sS'Europe/Stockholm (CEST)'
+p236
+I7200
+sS'Australia/Adelaide (ACST)'
+p237
+I34200
+sS'America/Boise (MDT)'
+p238
+I-21600
+sS'Africa/Algiers (CET)'
+p239
+I3600
+sS'Australia/Brisbane (AEST)'
+p240
+I36000
+sS'Africa/Libreville (WAT)'
+p241
+I3600
+sS'Asia/Choibalsan (+08)'
+p242
+I28800
+sS'America/Santarem (-03)'
+p243
+I-10800
+sS'America/Asuncion (-04)'
+p244
+I-14400
+sS'America/Dominica (AST)'
+p245
+I-14400
+sS'America/Edmonton (MDT)'
+p246
+I-21600
+sS'Asia/Qostanay (+06)'
+p247
+I21600
+sS'America/Swift Current (CST)'
+p248
+I-21600
+sS'Pacific/Pago Pago (SST)'
+p249
+I-39600
+sS'Africa/Tunis (CET)'
+p250
+I3600
+sS'Europe/Jersey (BST)'
+p251
+I3600
+sS'America/Yakutat (AKDT)'
+p252
+I-28800
+sS'America/Nome (AKDT)'
+p253
+I-28800
+sS'Asia/Pontianak (WIB)'
+p254
+I25200
+sS'America/Puerto Rico (AST)'
+p255
+I-14400
+sS'Africa/Abidjan (GMT)'
+p256
+I0
+sS'Indian/Antananarivo (EAT)'
+p257
+I10800
+sS'Africa/Lome (GMT)'
+p258
+I0
+sS'Antarctica/Troll (+02)'
+p259
+I7200
+sS'America/St Lucia (AST)'
+p260
+I-14400
+sS'Asia/Ust-Nera (+10)'
+p261
+I36000
+sS'America/Caracas (-04)'
+p262
+I-14400
+sS'America/Mexico City (CDT)'
+p263
+I-18000
+sS'America/Nipigon (EDT)'
+p264
+I-14400
+sS'America/Belize (CST)'
+p265
+I-21600
+sS'Europe/Tallinn (EEST)'
+p266
+I10800
+sS'Europe/Berlin (CEST)'
+p267
+I7200
+sS'Africa/Kampala (EAT)'
+p268
+I10800
+sS'America/Indiana/Tell City (CDT)'
+p269
+I-18000
+sS'Atlantic/Madeira (WEST)'
+p270
+I3600
+sS'America/Kentucky/Monticello (EDT)'
+p271
+I-14400
+sS'Pacific/Galapagos (-06)'
+p272
+I-21600
+sS'Antarctica/Rothera (-03)'
+p273
+I-10800
+sS'Europe/Zagreb (CEST)'
+p274
+I7200
+sS'America/Rankin Inlet (CDT)'
+p275
+I-18000
+sS'Pacific/Marquesas (-0930)'
+p276
+I-34200
+sS'America/Panama (EST)'
+p277
+I-18000
+sS'Pacific/Saipan (ChST)'
+p278
+I36000
+sS'Africa/Djibouti (EAT)'
+p279
+I10800
+sS'Africa/El Aaiun (+01)'
+p280
+I3600
+sS'America/Argentina/Jujuy (-03)'
+p281
+I-10800
+sS'America/Aruba (AST)'
+p282
+I-14400
+sS'Asia/Riyadh (+03)'
+p283
+I10800
+sS'Europe/Copenhagen (CEST)'
+p284
+I7200
+sS'Europe/London (BST)'
+p285
+I3600
+sS'Asia/Pyongyang (KST)'
+p286
+I32400
+sS'America/Monterrey (CDT)'
+p287
+I-18000
+sS'America/St Vincent (AST)'
+p288
+I-14400
+sS'America/Thule (ADT)'
+p289
+I-10800
+sS'Australia/Perth (AWST)'
+p290
+I28800
+sS'America/Iqaluit (EDT)'
+p291
+I-14400
+sS'Asia/Makassar (WITA)'
+p292
+I28800
+sS'Asia/Nicosia (EEST)'
+p293
+I10800
+sS'Europe/Sarajevo (CEST)'
+p294
+I7200
+sS'Arctic/Longyearbyen (CEST)'
+p295
+I7200
+sS'Asia/Famagusta (EEST)'
+p296
+I10800
+sS'Asia/Hovd (+07)'
+p297
+I25200
+sS'America/Indiana/Indianapolis (EDT)'
+p298
+I-14400
+sS'Asia/Almaty (+06)'
+p299
+I21600
+sS'Antarctica/Vostok (+06)'
+p300
+I21600
+sS'Asia/Jayapura (WIT)'
+p301
+I32400
+sS'America/Hermosillo (MST)'
+p302
+I-25200
+sS'Africa/Addis Ababa (EAT)'
+p303
+I10800
+sS'America/Atikokan (EST)'
+p304
+I-18000
+sS'Europe/San Marino (CEST)'
+p305
+I7200
+sS'Africa/Accra (GMT)'
+p306
+I0
+sS'America/Chihuahua (MDT)'
+p307
+I-21600
+sS'America/Cayman (EST)'
+p308
+I-18000
+sS'America/Bogota (-05)'
+p309
+I-18000
+sS'Antarctica/Macquarie (+11)'
+p310
+I39600
+sS'America/Bahia Banderas (CDT)'
+p311
+I-18000
+sS'Atlantic/Stanley (-03)'
+p312
+I-10800
+sS'Europe/Luxembourg (CEST)'
+p313
+I7200
+sS'America/Indiana/Winamac (EDT)'
+p314
+I-14400
+sS'Pacific/Tarawa (+12)'
+p315
+I43200
+sS'Asia/Kamchatka (+12)'
+p316
+I43200
+sS'America/Thunder Bay (EDT)'
+p317
+I-14400
+sS'Africa/Bangui (WAT)'
+p318
+I3600
+sS'Asia/Muscat (+04)'
+p319
+I14400
+sS'Europe/Tirane (CEST)'
+p320
+I7200
+sS'Europe/Astrakhan (+04)'
+p321
+I14400
+sS'Africa/Nouakchott (GMT)'
+p322
+I0
+sS'Asia/Kuwait (+03)'
+p323
+I10800
+sS'America/Whitehorse (PDT)'
+p324
+I-25200
+sS'America/Yellowknife (MDT)'
+p325
+I-21600
+sS'Europe/Monaco (CEST)'
+p326
+I7200
+sS'America/Guyana (-04)'
+p327
+I-14400
+sS'Pacific/Fakaofo (+13)'
+p328
+I46800
+sS'Europe/Simferopol (MSK)'
+p329
+I10800
+sS'Australia/Melbourne (AEST)'
+p330
+I36000
+sS'Asia/Novokuznetsk (+07)'
+p331
+I25200
+sS'Asia/Aden (+03)'
+p332
+I10800
+sS'Africa/Nairobi (EAT)'
+p333
+I10800
+sS'Asia/Kolkata (IST)'
+p334
+I19800
+sS'Asia/Qatar (+03)'
+p335
+I10800
+sS'America/Regina (CST)'
+p336
+I-21600
+sS'Asia/Sakhalin (+11)'
+p337
+I39600
+sS'Europe/Budapest (CEST)'
+p338
+I7200
+sS'America/Santiago (-04)'
+p339
+I-14400
+sS'Indian/Cocos (+0630)'
+p340
+I23400
+sS'America/Phoenix (MST)'
+p341
+I-25200
+sS'America/Montserrat (AST)'
+p342
+I-14400
+sS'America/Los Angeles (PDT)'
+p343
+I-25200
+sS'Europe/Dublin (IST)'
+p344
+I3600
+sS'Asia/Beirut (EEST)'
+p345
+I10800
+sS'Europe/Isle of Man (BST)'
+p346
+I3600
+sS'Asia/Amman (EEST)'
+p347
+I10800
+sS'America/Dawson (PDT)'
+p348
+I-25200
+sS'UTC (UTC)'
+p349
+I0
+sS'Africa/Conakry (GMT)'
+p350
+I0
+sS'Asia/Srednekolymsk (+11)'
+p351
+I39600
+sS'America/Godthab (-02)'
+p352
+I-7200
+sS'Pacific/Port Moresby (+10)'
+p353
+I36000
+sS'Asia/Jakarta (WIB)'
+p354
+I25200
+sS'Asia/Vladivostok (+10)'
+p355
+I36000
+sS'Asia/Damascus (EEST)'
+p356
+I10800
+sS'Asia/Samarkand (+05)'
+p357
+I18000
+sS'Europe/Skopje (CEST)'
+p358
+I7200
+sS'Europe/Istanbul (+03)'
+p359
+I10800
+sS'Europe/Sofia (EEST)'
+p360
+I10800
+sS'Africa/Monrovia (GMT)'
+p361
+I0
+sS'America/Sitka (AKDT)'
+p362
+I-28800
+sS'America/Indiana/Petersburg (EDT)'
+p363
+I-14400
+sS'America/Porto Velho (-04)'
+p364
+I-14400
+sS'Australia/Darwin (ACST)'
+p365
+I34200
+sS'America/Adak (HDT)'
+p366
+I-32400
+sS'America/Recife (-03)'
+p367
+I-10800
+sS'Asia/Chita (+09)'
+p368
+I32400
+sS'America/New York (EDT)'
+p369
+I-14400
+sS'Africa/Sao Tome (GMT)'
+p370
+I0
+sS'Europe/Moscow (MSK)'
+p371
+I10800
+sS'America/Resolute (CDT)'
+p372
+I-18000
+sS'Africa/Mogadishu (EAT)'
+p373
+I10800
+sS'America/Havana (CDT)'
+p374
+I-14400
+sS'America/North Dakota/Beulah (CDT)'
+p375
+I-18000
+sS'America/Cuiaba (-04)'
+p376
+I-14400
+sS'America/Marigot (AST)'
+p377
+I-14400
+sS'America/Merida (CDT)'
+p378
+I-18000
+sS'America/Miquelon (-02)'
+p379
+I-7200
+sS'Africa/Banjul (GMT)'
+p380
+I0
+sS'America/El Salvador (CST)'
+p381
+I-21600
+sS'America/Grand Turk (EDT)'
+p382
+I-14400
+sS'America/Port of Spain (AST)'
+p383
+I-14400
+sS'America/Tegucigalpa (CST)'
+p384
+I-21600
+sS'Indian/Chagos (+06)'
+p385
+I21600
+sS'America/Port-au-Prince (EDT)'
+p386
+I-14400
+sS'America/Toronto (EDT)'
+p387
+I-14400
+sS'America/Martinique (AST)'
+p388
+I-14400
+sS'Europe/Rome (CEST)'
+p389
+I7200
+sS'Europe/Zaporozhye (EEST)'
+p390
+I10800
+sS'America/Punta Arenas (-03)'
+p391
+I-10800
+sS'Pacific/Bougainville (+11)'
+p392
+I39600
+sS'Africa/Dakar (GMT)'
+p393
+I0
+sS'Asia/Krasnoyarsk (+07)'
+p394
+I25200
+sS'Australia/Sydney (AEST)'
+p395
+I36000
+sS'Europe/Chisinau (EEST)'
+p396
+I10800
+sS'Atlantic/Faroe (WEST)'
+p397
+I3600
+sS'Asia/Manila (PST)'
+p398
+I28800
+sS'Australia/Eucla (+0845)'
+p399
+I31500
+sS'Pacific/Guam (ChST)'
+p400
+I36000
+sS'Asia/Taipei (CST)'
+p401
+I28800
+sS'America/Maceio (-03)'
+p402
+I-10800
+sS'Africa/Freetown (GMT)'
+p403
+I0
+sS'Europe/Saratov (+04)'
+p404
+I14400
+sS'Indian/Mauritius (+04)'
+p405
+I14400
+sS'America/Antigua (AST)'
+p406
+I-14400
+sS'America/Ojinaga (MDT)'
+p407
+I-21600
+sS'Atlantic/Canary (WEST)'
+p408
+I3600
+sS'Asia/Bahrain (+03)'
+p409
+I10800
+sS'Asia/Aqtau (+05)'
+p410
+I18000
+sS'Africa/Kigali (CAT)'
+p411
+I7200
+sS'Pacific/Kosrae (+11)'
+p412
+I39600
+sS'Asia/Colombo (+0530)'
+p413
+I19800
+sS'Asia/Singapore (+08)'
+p414
+I28800
+sS'Europe/Volgograd (+04)'
+p415
+I14400
+sS'Africa/Gaborone (CAT)'
+p416
+I7200
+sS'Asia/Dushanbe (+05)'
+p417
+I18000
+sS'Asia/Karachi (PKT)'
+p418
+I18000
+sS'America/Argentina/San Luis (-03)'
+p419
+I-10800
+sS'America/Argentina/San Juan (-03)'
+p420
+I-10800
+sS'Indian/Reunion (+04)'
+p421
+I14400
+sS'Asia/Seoul (KST)'
+p422
+I32400
+sS'Asia/Khandyga (+09)'
+p423
+I32400
+sS'Indian/Christmas (+07)'
+p424
+I25200
+sS'Pacific/Tongatapu (+13)'
+p425
+I46800
+sS'America/Moncton (ADT)'
+p426
+I-10800
+s.

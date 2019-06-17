@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnalyzeBucks</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css') }}">
+  </head>
+  <body >
+    <center><h4 style="color:red;">{{error}}</h4></center>
+    <form class="login" method="POST">
+      <input type="text" class="login-input" name="name" placeholder="Username" autofocus>
+      <input type="password" class="login-input" name="password" placeholder="Password">
+      <input type="submit" value="Log In" class="login-button">
+    </form>
+  </body>
+</html>
