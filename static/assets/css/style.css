@@ -1,4 +1,9 @@
 
+html,body{
+  height: 98%;
+  width: 98%;
+}
+/*--------------------------------------------------------------------------------------------------------*/
 .login {
   margin: 20px auto;
   width: 300px;
@@ -46,38 +51,155 @@
   text-decoration:none;
   font-size:13px;
 }
+
 /*---------------------------------------------------------*/
 
-.btn {
-  border: 1% solid black;
-  background-color: white;
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 20%;
+#upload-form{
+  margin: 20px auto;
+  width: 30%;
+  padding: 30px 25px;
+  background: white;
+  border: 1px solid #c4c4c4;
+}
+#upload-form-input-left {
+  float: left;
+  width: 48%;
+  height: 30px;
+  margin-bottom: 25px;
+  padding-left:10px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   outline: none;
 }
-.btn:hover {
-  background-color: gray;
-  color: white;
- 
+#upload-form-input-right {
+  float: right;
+  width: 48%;
+  height: 30px;
+  margin-bottom: 25px;
+  padding-left:10px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+#upload-form-input-file{
+  width: 100%;
+  margin-bottom: 25px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+} 
+#upload-form-input-file::-webkit-file-upload-button{
+  cursor: pointer;
+}
+
+#upload-form-button{
+  width: 100%;
+  height: 30px;
+  padding: 0;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer; 
+  outline:0;
 }
 /*---------------------------------------------------------*/
-#search{
-  background-color: #3D4143;
+#delete-form {
+  margin: 20px auto;
+  width: 20%;
+  padding: 30px 25px;
+  background: white;
+  border: 1px solid #c4c4c4;
+}
+#delete-form-input{
   width: 100%;
-  position: fixed;
-  top:5%;
-  align-content: center;
+  margin-bottom: 25px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
 }
-#content{
-  width: 98%;
-  margin-top: 8%;
+
+#delete-form-button{
+  width: 100%;
+  height: 30px;
+  padding: 0;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer; 
+  outline:0;
 }
-#footer {
-  background-color: #3D4143;
+
+/*--------------------------------------------------------*/
+#mySidenav a {
   position: fixed;
-  bottom: 5%;
-  margin-left: 45%;
-  padding: 0.8%;
+  left: -120px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 120px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+
+#upload {
+  top: 20px;
+  background-color: #4CAF50;
+}
+
+#reports {
+  top: 80px;
+  background-color: #2196F3;
+}
+
+#predictions {
+  top: 140px;
+  background-color: #555;
+}
+
+#settings {
+  top: 200px;
+  background-color:#F2B94A;
+}
+
+#logout {
+  top: 260px;
+  background-color: #f44336;
+}
+/*------------------------------------------------------------------------------------------------------*/
+#transactions {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+#transactions th, td {
+  text-align: left;
+  padding: 8px;
+}
+#transactions thead tr:hover{
+  cursor: pointer;
+}
+#transactions tr:nth-child(even){background-color: #f2f2f2}
+
+.sort-right-corner{
+  float:right;
 }

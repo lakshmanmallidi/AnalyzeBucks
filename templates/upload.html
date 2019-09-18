@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AnalyzeBucks</title>
+  <!--<link rel="stylesheet" href="../static/assets/css/style.css">-->
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}">
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="upload.html" id="upload">Upload</a>
+    <a href="#" id="reports">Reports</a>
+    <a href="#" id="predictions">Predictions</a>
+    <a href="settings.html" id="settings">Settings</a>
+    <a href="logout.html" id="logout">Logout</a>
+  </div>
+
+  <div style="margin-left:80px;height: 100%;">
+    <center><h4 style="color:red;">{{error}}</h4></center>
+    <center>
+      <select style="margin:20px auto;border: 3px solid #c4c4c4;padding: 10px;outline: none;"
+        onchange="changeFormType()" id="formType">
+        <option value="upload" selected>Upload data</option>
+        <option value="delete">Delete data</option>
+      </select>
+    </center>
+    <div id="form">
+      <form id="upload-form" method="POST">
+        <select name="bank" id="upload-form-input-left">
+          <option value="default" selected>Select Bank</option>
+          <option value="sbh">State Bank of India</option>
+        </select>
+        <select name="uploadType" id="upload-form-input-right">
+          <option value="default" selected>Select Upload Type</option>
+          <option value="append">Append to existing records</option>
+          <option value="append">Delete all existing records</option>
+        </select>
+        <input type="file" accept=".csv,.xls,.xlsx,.ods" id="upload-form-input-file" multiple>
+        <input type="submit" value="Upload" id="upload-form-button" name="upload">
+      </form>
+    </div>
+    <div style="overflow-y:auto; height:45%;">
+      <table id="transactions" rules='all'>
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Id</th>
+            <th onclick="sortTable(1)">Transaction Date <span class="sort-right-corner">&#11139;</span> </th>
+            <th onclick="sortTable(2)" colspan="3">Transaction Details <span class="sort-right-corner">&#11139;<span>
+            </th>
+            <th onclick="sortTable(3)">Debits <span class="sort-right-corner">&#11139;</span> </th>
+            <th onclick="sortTable(4)">Credits <span class="sort-right-corner">&#11139;</span></th>
+            <th onclick="sortTable(5)">Balance <span class="sort-right-corner">&#11139;</span></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>01-4-2019
+            <td colspan="3">Zomato debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>30000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>02-4-2019
+            <td colspan="3">DBS debit and transactions</td>
+            <td></td>
+            <td>2000</td>
+            <td>32000</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>03-4-2019
+            <td colspan="3">ggk debit and transactions</td>
+            <td>1000</td>
+            <td></td>
+            <td>31000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>04-4-2019
+            <td colspan="3">cts debit and transactions</td>
+            <td>2000</td>
+            <td></td>
+            <td>29000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("transactions");
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /*check if the two rows should switch place,
+            based on the direction, asc or desc:*/
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            //Each time a switch is done, increase this count by 1:
+            switchcount++;
+          } else {
+            /*If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again.*/
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+      function changeFormType() {
+        if (document.getElementById("formType").value == "upload") {
+          document.getElementById("form").innerHTML = `
+            <form id="upload-form" method="POST" >
+              <select name="bank" id="upload-form-input-left">
+                <option value="default" selected>Select Bank</option>
+                <option value="sbh">State Bank of India</option>
+              </select>
+              <select name="uploadType" id="upload-form-input-right">
+                <option value="default" selected>Select Upload Type</option>
+                <option value="append">Append to existing records</option>
+                <option value="append">Delete all existing records</option>
+              </select>
+              <input type="file" accept=".csv,.xls,.xlsx,.ods" id="upload-form-input-file" multiple>
+                <input type="submit" value="Upload" id="upload-form-button" name="upload">
+            </form>`
+
+        }
+        else {
+          document.getElementById("form").innerHTML = `
+              <form id="delete-form" method="POST">
+                <label for="from_date">From:</label>
+                <input type="date" name="from_date" id="delete-form-input">
+                <label for="to_date">To:</label>
+                <input type="date" name="to_date" id="delete-form-input">
+                <input type="submit" value="Delete" id="delete-form-button" name="delete">
+              </form>
+              `
+        }
+      }
+    </script>
+  </div>
+</body>
+
+</html>

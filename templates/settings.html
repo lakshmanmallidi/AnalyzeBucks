@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AnalyzeBucks</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}">
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="upload.html" id="upload">Upload</a>
+    <a href="#" id="reports">Reports</a>
+    <a href="#" id="predictions">Predictions</a>
+    <a href="settings.html" id="settings">Settings</a>
+    <a href="logout.html" id="logout">Logout</a>
+  </div>
+  <div style="margin-left:80px;">
+    <center>
+      <h4 style="color:red;">{{error}}</h4>
+    </center>
+    <center>
+      <h4 style="color:green;">{{msg}}</h4>
+    </center>
+    <form class="login" method="POST">
+      <input type="password" class="login-input" placeholder="New password" name="new_password">
+      <input type="password" class="login-input" placeholder="Confirm password" name="confirm_password">
+      <input type="submit" value="Change Password" class="login-button">
+    </form>
+  </div>
+</body>
+
+</html>
