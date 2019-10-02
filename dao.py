@@ -3,6 +3,8 @@ from sqlite3 import connect
 from hashlib import sha256
 from re import sub
 from datetime import datetime
+from random import choice
+from string import ascii_letters,digits
 def init_database():
     if(not path.isfile("data/AnalyzeBucks.sqlite3")):
         conn = connect("data/AnalyzeBucks.sqlite3")
@@ -11,6 +13,11 @@ def init_database():
             username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
             is_admin INTEGER NOT NULL)''')
+        conn.execute('''CREATE TABLE tbl_session(
+            key TEXT NOT NULL UNIQUE,
+            username TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )''')
         conn.commit()
         conn.close()
         create_user('admin','admin',1)
@@ -60,13 +67,13 @@ def delete_user(username):
 
 def change_user_role(username,is_admin):
     conn = connect('data/AnalyzeBucks.sqlite3')
-    conn.execute("UPDATE tbl_user SET is_admin=? WHERE username=?",(username,is_admin))
+    conn.execute("UPDATE tbl_user SET is_admin=? WHERE username=?",(is_admin,username))
     conn.commit()
     conn.close()
 
 def change_user_password(username,newpasswd):
     conn = connect('data/AnalyzeBucks.sqlite3')
-    conn.execute("UPDATE tbl_user SET password=? WHERE username=?",(username,sha256(newpasswd.encode()).hexdigest()))
+    conn.execute("UPDATE tbl_user SET password=? WHERE username=?",(sha256(newpasswd.encode()).hexdigest(),username))
     conn.commit()
     conn.close()
 
@@ -90,7 +97,37 @@ def get_user_role(username):
     conn.close()
     return role    
 
-def InsertIntoTables(data,username):
+def create_session(username):
+    conn = connect('data/AnalyzeBucks.sqlite3')
+    key = None
+    while True:
+        key = ''.join([choice(ascii_letters + digits) for n in range(32)])
+        cursor = conn.execute('SELECT * FROM tbl_session WHERE key=?',(key,))
+        row = cursor.fetchone()
+        if not row:
+            break
+    conn.execute('INSERT INTO tbl_session(key, username) VALUES(?,?)',(key,username))
+    conn.commit()
+    conn.close()
+    return key
+
+def get_session(key):
+    username = None
+    conn = connect('data/AnalyzeBucks.sqlite3')
+    cursor = conn.execute('SELECT username FROM tbl_session WHERE key=?',(key,))
+    row = cursor.fetchone()
+    if row:
+        username = row[0]
+    conn.close()
+    return username
+
+def delete_session(username):
+    conn = connect('data/AnalyzeBucks.sqlite3')
+    conn.execute('DELETE FROM tbl_session WHERE username=?',(username,))
+    conn.commit()
+    conn.close()
+
+def insert_into_tables(data,username):
     if(len(data) > 0):    
         tbl_transaction_query = "INSERT INTO tbl_transaction(transaction_date,details,debit_amount,credit_amount,balance_amount) VALUES "
         tbl_debit_query = "INSERT INTO tbl_debit(transaction_date,details,debit_amount,balance_amount) VALUES "
@@ -124,10 +161,68 @@ def InsertIntoTables(data,username):
             conn.execute(tbl_credit_query)
         conn.commit()
         conn.close()
+        rearrange_data(username)
 
+def rearrange_data(username):
+    conn = connect('data/'+username+".sqlite3")
+    conn.execute('''CREATE TEMPORARY TABLE temp_transaction AS 
+                    SELECT transaction_date,details,
+                    debit_amount,credit_amount,balance_amount 
+                    FROM tbl_transaction ORDER BY transaction_date''')
+    conn.execute("DELETE FROM tbl_transaction")
+    conn.execute("DELETE FROM sqlite_sequence where name='tbl_transaction'")
+    conn.execute('''INSERT INTO tbl_transaction(transaction_date,
+                                                details,
+                                                debit_amount,
+                                                credit_amount,
+                                                balance_amount) 
+                    SELECT * FROM temp.temp_transaction''')
+    conn.execute("DROP TABLE TEMP.temp_transaction")
+
+    conn.execute('''CREATE TEMPORARY TABLE temp_debit AS 
+                    SELECT transaction_date,details,
+                    debit_amount,balance_amount 
+                    FROM tbl_debit ORDER BY transaction_date''')
+    conn.execute("DELETE FROM tbl_debit")
+    conn.execute("DELETE FROM sqlite_sequence where name='tbl_debit'")
+    conn.execute('''INSERT INTO tbl_debit(transaction_date,
+                                                details,
+                                                debit_amount,
+                                                balance_amount) 
+                    SELECT * FROM temp.temp_debit''')
+    conn.execute("DROP TABLE TEMP.temp_debit")
+
+    conn.execute('''CREATE TEMPORARY TABLE temp_credit AS 
+                    SELECT transaction_date,details,
+                    credit_amount,balance_amount 
+                    FROM tbl_credit ORDER BY transaction_date''')
+    conn.execute("DELETE FROM tbl_credit")
+    conn.execute("DELETE FROM sqlite_sequence where name='tbl_credit'")
+    conn.execute('''INSERT INTO tbl_credit(transaction_date,
+                                                details,
+                                                credit_amount,
+                                                balance_amount) 
+                    SELECT * FROM temp.temp_credit''')
+    conn.execute("DROP TABLE TEMP.temp_credit")
+    conn.commit()
+    conn.close()
 
 def preprocess(text):
     return sub(r"\s+$", "", sub(" +", " ", sub('[^a-zA-Z0-9]', ' ',sub('[/-]', " ", text))))
+
+def delete_transactions(from_date, to_date, username):
+    conn = connect('data/'+username+".sqlite3")
+    from_date_epoch = from_date.strftime("%s")
+    to_date_epoch = to_date.strftime("%s")
+    conn.execute("DELETE FROM tbl_transaction WHERE transaction_date BETWEEN "+from_date_epoch+
+                           " AND "+to_date_epoch )
+    conn.execute("DELETE FROM tbl_credit WHERE transaction_date BETWEEN "+from_date_epoch+
+                           " AND "+to_date_epoch )
+    conn.execute("DELETE FROM tbl_debit WHERE transaction_date BETWEEN "+from_date_epoch+
+                           " AND "+to_date_epoch )
+    conn.commit()
+    conn.close()
+    rearrange_data(username)
 
 def get_transactions(table_name,username):
     data_dict = {}
@@ -139,30 +234,40 @@ def get_transactions(table_name,username):
     conn.close()
     return data_dict
 
-def get_credit_transactions(username):
+def get_credit_transactions(username,id, pagination):
     data = {}
     conn = connect('data/'+username+'.sqlite3')
-    cursor = conn.execute("SELECT * FROM tbl_credit")
+    cursor = conn.execute("SELECT * FROM tbl_credit where id>? AND id<=?",(id,id+pagination))
     for row in cursor:
         data.update({row[0]:[datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4]]})
     conn.close()
     return data
 
-def get_debit_transactions(username):
+def get_debit_transactions(username,id, pagination):
     data = {}
     conn = connect('data/'+username+'.sqlite3')
-    cursor = conn.execute("SELECT * FROM tbl_debit")
+    cursor = conn.execute("SELECT * FROM tbl_debit WHERE id>? AND id<=?",(id,id+pagination))
     for row in cursor:
-        data.update({row[0]:[datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4]]})
+        data.update((row[0],datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4]))
     conn.close()
     return data
 
-def get_all_transactions(username):
-    data = {}
+def get_transaction_count(username):
+    count=0
+    conn = connect("data/"+username+".sqlite3")
+    cursor = conn.execute("SELECT count(*) FROM tbl_transaction")
+    row = cursor.fetchone()
+    if row:
+        count = int(row[0])
+    conn.close()
+    return count
+
+def get_all_transactions(username,id, pagination):
+    data = []
     conn = connect('data/'+username+'.sqlite3')
-    cursor = conn.execute("SELECT * FROM tbl_transaction")
+    cursor = conn.execute("SELECT * FROM tbl_transaction WHERE id>? AND id<=?",(id,id+pagination))
     for row in cursor:
-        data.update({row[0]:[datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4],row[5]]})
+        data.append((row[0],datetime.utcfromtimestamp(row[1]).strftime("%d %b %Y"),row[2],row[3],row[4],row[5]))
     conn.close()
     return data
 

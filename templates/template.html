@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>AnalyzeBucks</title>
+  <!--<link rel="stylesheet" href="../static/assets/css/style.css">-->
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}">
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    {% if role==1 %}
+      <a href="/user_manager" id="user_manager">Users</a>
+    {% endif %}
+    <a href="/upload" id="upload">Upload</a>
+    <a href="#" id="reports">Reports</a>
+    <a href="#" id="predictions">Predictions</a>
+    <a href="/settings" id="settings">Settings</a>
+    <a href="/logout" id="logout">Logout</a>
+  </div>
+  {% block body %} {% endblock %}
+</body>
+
+</html>

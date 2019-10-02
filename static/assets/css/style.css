@@ -85,9 +85,9 @@ html,body{
   border-radius: 4px;
   outline: none;
 }
-#upload-form-input-file{
+#upload-form-input-middle{
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
   font-size: 15px;
   background: #fff;
   border: 1px solid #ccc;
@@ -159,28 +159,33 @@ html,body{
   left: 0;
 }
 
-#upload {
+#user_manager {
   top: 20px;
+  background-color: #8a2be2;
+}
+
+#upload {
+  top: 80px;
   background-color: #4CAF50;
 }
 
 #reports {
-  top: 80px;
+  top: 140px;
   background-color: #2196F3;
 }
 
 #predictions {
-  top: 140px;
+  top: 200px;
   background-color: #555;
 }
 
 #settings {
-  top: 200px;
+  top: 260px;
   background-color:#F2B94A;
 }
 
 #logout {
-  top: 260px;
+  top: 320px;
   background-color: #f44336;
 }
 /*------------------------------------------------------------------------------------------------------*/

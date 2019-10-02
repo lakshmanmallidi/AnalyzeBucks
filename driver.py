@@ -1,6 +1,6 @@
 import os
 from data_extractor import StateBankIndia
-from dao import InsertIntoTables,get_transactions,update_clusters,create_user,init_database
+from dao import insert_into_tables,get_transactions,update_clusters,create_user,init_database
 from data_analyzer import segregate
 def upload_files():
     for statement in os.listdir("files/sbh"):
@@ -8,10 +8,10 @@ def upload_files():
         raw_data = f.read()
         f.close()
         data = StateBankIndia(raw_data)
-        InsertIntoTables(data,'lakshman')
-#init_database()
+        insert_into_tables(data,'lakshman')
+init_database()
 create_user('lakshman','harrypotter',0)
-n_clusters = 50
+n_clusters = 10
 upload_files()
 data = get_transactions('tbl_debit','lakshman')
 clusters, error_msg = segregate(list(data.values()), n_clusters)

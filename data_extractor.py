@@ -31,3 +31,7 @@ def StateBankIndia(raw_data):
             break
         row_num = row_num+1
     return final_data
+
+def factory(bank_name):
+    if(bank_name=='sbh'):
+        return StateBankIndia
