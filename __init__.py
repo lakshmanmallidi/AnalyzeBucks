@@ -18,7 +18,13 @@ from dao import get_user_password,\
                 change_user_password, \
                 get_transaction_count , \
                 delete_transactions, \
-                insert_into_tables
+                insert_into_tables, \
+                get_all_users, \
+                delete_user, \
+                change_user_password, \
+                change_user_role, \
+                is_user, \
+                create_user
 from data_extractor import factory           
 from hashlib import sha256
 from jwt import encode, decode
@@ -78,6 +84,38 @@ def get_transactions(username,role):
         return response
     else:
         return ""
+
+@app.route("/user_manager",methods=["GET","POST"])
+@session_checker
+def  user_manager(username, role):
+    if(role==1):
+        if(request.method=="POST"):
+            if(request.form['type']=='Revoke'):
+                change_user_role(request.form['username'], 0)
+            elif(request.form['type']=='Grant'):
+                change_user_role(request.form['username'], 1)
+            elif(request.form['type']=='Reset'):
+                change_user_password(request.form['username'],'password')
+            elif(request.form['type']=='Delete'):
+                if(request.form['username']!=username):
+                    delete_user(request.form['username'])
+            elif(request.form['type']=="Create"):
+                if(not is_user(request.form['username'])):
+                    create_user(request.form['username'],'password',0)
+                    users = get_all_users()
+                    return render_template("user_manager.html",role=role, users = users, username = username, msg="user successfully created")
+                else:
+                    users = get_all_users()
+                    return render_template("user_manager.html",role=role, users = users, username = username,error="user already exists")
+            else:
+                pass
+            return ""
+        else:
+            users = get_all_users()
+            return render_template("user_manager.html",role=role, users = users, username = username)
+    else:
+        return redirect(url_for("login"))
+
 def get_meta_info(username):
     transaction_count = get_transaction_count(username)
     if(transaction_count%pagination != 0):

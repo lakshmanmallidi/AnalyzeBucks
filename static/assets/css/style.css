@@ -54,14 +54,14 @@ html,body{
 
 /*---------------------------------------------------------*/
 
-#upload-form{
+.upload-form{
   margin: 20px auto;
   width: 30%;
   padding: 30px 25px;
   background: white;
   border: 1px solid #c4c4c4;
 }
-#upload-form-input-left {
+.upload-form-input-left {
   float: left;
   width: 48%;
   height: 30px;
@@ -73,7 +73,7 @@ html,body{
   border-radius: 4px;
   outline: none;
 }
-#upload-form-input-right {
+.upload-form-input-right {
   float: right;
   width: 48%;
   height: 30px;
@@ -85,7 +85,7 @@ html,body{
   border-radius: 4px;
   outline: none;
 }
-#upload-form-input-middle{
+.upload-form-input-middle{
   width: 100%;
   margin-bottom: 24px;
   font-size: 15px;
@@ -95,11 +95,11 @@ html,body{
   cursor: pointer;
   outline: none;
 } 
-#upload-form-input-file::-webkit-file-upload-button{
+.upload-form-input-file::-webkit-file-upload-button{
   cursor: pointer;
 }
 
-#upload-form-button{
+.upload-form-button{
   width: 100%;
   height: 30px;
   padding: 0;
@@ -112,14 +112,14 @@ html,body{
   outline:0;
 }
 /*---------------------------------------------------------*/
-#delete-form {
+.delete-form {
   margin: 20px auto;
   width: 20%;
   padding: 30px 25px;
   background: white;
   border: 1px solid #c4c4c4;
 }
-#delete-form-input{
+.delete-form-input{
   width: 100%;
   margin-bottom: 25px;
   font-size: 15px;
@@ -129,7 +129,7 @@ html,body{
   outline: none;
 }
 
-#delete-form-button{
+.delete-form-button{
   width: 100%;
   height: 30px;
   padding: 0;
@@ -189,21 +189,27 @@ html,body{
   background-color: #f44336;
 }
 /*------------------------------------------------------------------------------------------------------*/
-#transactions {
+.mytable {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
 }
 
-#transactions th, td {
+.mytable th{
   text-align: left;
   padding: 8px;
 }
-#transactions thead tr:hover{
+
+.mytable td{
+  text-align: center;
+  padding: 8px;
+}
+
+.mytable thead tr:hover{
   cursor: pointer;
 }
-#transactions tr:nth-child(even){background-color: #f2f2f2}
+.mytable tr:nth-child(even){background-color: #f2f2f2}
 
 .sort-right-corner{
   float:right;

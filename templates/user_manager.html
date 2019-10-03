@@ -1,0 +1,153 @@
+{% extends "template.html" %}
+{% block body %}
+  <div style="margin-left:80px;height: 100%;">
+    <center><h4 style="color:green;">{{msg}}</h4></center>
+    <center><h4 style="color:red;">{{error}}</h4></center>
+    <form class="upload-form" method="POST">
+       Create User:
+      <input type="text" name="username" class="upload-form-input-middle" required>
+      <input type="submit" class="upload-form-button" name="type" value="Create">
+    </form>
+    <input type="text" id="search_box" onkeyup="search()" placeholder="Search username...">
+    <div style="overflow-y:auto; height:45%;">
+      <table id="users" class="mytable" rules='all'>
+        <thead>
+          <tr>
+            <th onclick="sortNumericColumn(0)">Id<span class="sort-right-corner">&#8645;</span></th>
+            <th onclick="sortAlphabeticColumn(1)">User name <span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortAlphabeticColumn(2)">Is Admin<span class="sort-right-corner">&#8645;</span></th>
+            <th>Admin access </th>
+            <th >Reset  Password</th>
+            <th>Delete Account</th>
+          </tr>
+        </thead>
+        <tbody id="table_body">
+          {% for row in users %}
+            <tr>
+              <td>{{loop.index}}</td>
+              <td>{{row[0]}}</td>
+              {% if row[1]==1 %}
+                <td>Y</td>
+              {% else %}
+                <td>N</td>
+              {% endif %}
+
+              {% if row[1]==1 %}
+                <td><button onclick="adminOperation('Revoke','{{ row[0] }}')">Revoke</button></td>
+              {% else %}
+                <td><button onclick="adminOperation('Grant','{{ row[0] }}')">Grant</button></td>
+              {% endif %}
+              <td><button onclick="adminOperation('Reset','{{ row[0] }}')">Reset</button></td>
+              {% if row[0]!=username %}
+                <td><button onclick="adminOperation('Delete','{{ row[0] }}')">Delete</button></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script>
+      function adminOperation(type,username){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            window.location.href = window.location.href;
+          }
+        };
+        xhttp.open("POST", "/user_manager", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("type="+type+"&"+"username="+username);
+      }
+      function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search_box");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("users");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+      function sortAlphabeticColumn(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("users");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+      function sortNumericColumn(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("users");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+              if (parseInt(x.innerHTML,10) > parseInt(y.innerHTML,10)) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (parseInt(x.innerHTML,10) < parseInt(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+    </script>
+  </div>
+{% endblock %}

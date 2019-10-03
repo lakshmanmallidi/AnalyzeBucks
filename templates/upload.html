@@ -11,13 +11,13 @@
       </select>
     </center>
     <div id="form">
-      <form id="upload-form" method="POST"  enctype = "multipart/form-data">
-        <select name="bank" id="upload-form-input-middle" required>
+      <form class="upload-form" method="POST"  enctype = "multipart/form-data">
+        <select name="bank" class="upload-form-input-middle" required>
           <option value="default" selected>Select Bank</option>
           <option value="sbh">State Bank of India</option>
         </select>
-        <input type="file" accept=".csv,.xls,.xlsx,.ods" id="upload-form-input-middle" name ="files" multiple required>
-        <input type="submit" value="Upload" id="upload-form-button" name="form-type">
+        <input type="file" accept=".csv,.xls,.xlsx,.ods" class="upload-form-input-middle" name ="files" multiple required>
+        <input type="submit" value="Upload" class="upload-form-button" name="form-type">
       </form>
     </div>
     <div>
@@ -32,16 +32,15 @@
       </div>
     </div>
     <div style="overflow-y:auto; height:45%;">
-      <table id="transactions" rules='all'>
+      <table id="transactions" class="mytable" rules='all'>
         <thead>
           <tr>
-            <th onclick="sortNumericTable(0)">Id</th>
-            <th onclick="sortChronologicalTable(1)">Transaction Date <span class="sort-right-corner">&#8645;</span> </th>
-            <th onclick="sortAlphabeticTable(2)" colspan="3">Transaction Details <span class="sort-right-corner">&#8645;<span>
-            </th>
-            <th onclick="sortNumericTable(3)">Debits <span class="sort-right-corner">&#8645;</span> </th>
-            <th onclick="sortNumericTable(4)">Credits <span class="sort-right-corner">&#8645;</span></th>
-            <th onclick="sortNumericTable(5)">Balance <span class="sort-right-corner">&#8645;</span></th>
+            <th onclick="sortNumericColumn(0)">Id<span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortChronologicalColumn(1)">Transaction Date <span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortAlphabeticColumn(2)" colspan="3">Transaction Details <span class="sort-right-corner">&#8645;</span></th>
+            <th onclick="sortNumericColumn(3)">Debits <span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortNumericColumn(4)">Credits <span class="sort-right-corner">&#8645;</span></th>
+            <th onclick="sortNumericColumn(5)">Balance <span class="sort-right-corner">&#8645;</span></th>
           </tr>
         </thead>
         <tbody id="table_body">
@@ -100,7 +99,7 @@
           }       
         }
       }
-      function sortChronologicalTable(n) {
+      function sortChronologicalColumn(n) {
                 var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("transactions");
         switching = true;
@@ -136,7 +135,7 @@
           }
         }        
       }
-      function sortAlphabeticTable(n) {
+      function sortAlphabeticColumn(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("transactions");
         switching = true;
@@ -173,7 +172,7 @@
         }
       }
 
-      function sortNumericTable(n) {
+      function sortNumericColumn(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("transactions");
         switching = true;
@@ -213,24 +212,24 @@
       function changeFormType() {
         if (document.getElementById("formType").value == "upload") {
           document.getElementById("form").innerHTML = `
-            <form id="upload-form" method="POST"  enctype = "multipart/form-data">
-              <select name="bank" id="upload-form-input-middle" required>
+            <form class="upload-form" method="POST"  enctype = "multipart/form-data">
+              <select name="bank" class="upload-form-input-middle" required>
                 <option value="default" selected>Select Bank</option>
                 <option value="sbh">State Bank of India</option>
               </select>
-              <input type="file" accept=".csv,.xls,.xlsx,.ods" id="upload-form-input-middle" name="file" multiple required>
-              <input type="submit" value="Upload" id="upload-form-button" name="form-type">
+              <input type="file" accept=".csv,.xls,.xlsx,.ods" class="upload-form-input-middle" name="file" multiple required>
+              <input type="submit" value="Upload" class="upload-form-button" name="form-type">
             </form>`
 
         }
         else {
           document.getElementById("form").innerHTML = `
-              <form id="delete-form" method="POST">
+              <form class="delete-form" method="POST">
                 <label for="from_date">From:</label>
-                <input type="date" name="from_date" id="delete-form-input" required>
+                <input type="date" name="from_date" class="delete-form-input" required>
                 <label for="to_date">To:</label>
-                <input type="date" name="to_date" id="delete-form-input" required>
-                <input type="submit" value="Delete" id="delete-form-button" name="form-type">
+                <input type="date" name="to_date" class="delete-form-input" required>
+                <input type="submit" value="Delete" class="delete-form-button" name="form-type">
               </form>
               `
         }

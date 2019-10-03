@@ -22,6 +22,15 @@ def init_database():
         conn.close()
         create_user('admin','admin',1)
 
+def is_user(username):
+    conn = connect("data/AnalyzeBucks.sqlite3")
+    cursor = conn.execute("SELECT COUNT(*) FROM tbl_user WHERE username=?",(username,))
+    userCount = cursor.fetchone()[0]
+    conn.close()
+    if(userCount==0):
+        return False
+    return True
+
 def create_user(username,password,is_admin):
     conn = connect("data/AnalyzeBucks.sqlite3")
     conn.execute("INSERT INTO tbl_user(username,password,is_admin) VALUES(?,?,?)",
@@ -271,6 +280,15 @@ def get_all_transactions(username,id, pagination):
     conn.close()
     return data
 
+def get_all_users():
+    data = []
+    conn = connect("data/AnalyzeBucks.sqlite3")
+    cursor = conn.execute("SELECT username,is_admin FROM tbl_user")
+    for row in cursor:
+        data.append((row[0],row[1]))
+    conn.close()
+    return data
+    
 def update_clusters(table_name, keys, clusters,username):
     if(len(clusters)>0):
         conn = connect('data/'+username+'.sqlite3')
