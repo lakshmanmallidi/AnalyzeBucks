@@ -129,7 +129,7 @@ def get_session(key):
         username = row[0]
     conn.close()
     return username
-
+ 
 def delete_session(username):
     conn = connect('data/AnalyzeBucks.sqlite3')
     conn.execute('DELETE FROM tbl_session WHERE username=?',(username,))
@@ -242,25 +242,7 @@ def get_transactions(table_name,username):
         data_dict.update({int(row[0]): preprocess(row[1])})
     conn.close()
     return data_dict
-
-def get_credit_transactions(username,id, pagination):
-    data = {}
-    conn = connect('data/'+username+'.sqlite3')
-    cursor = conn.execute("SELECT * FROM tbl_credit where id>? AND id<=?",(id,id+pagination))
-    for row in cursor:
-        data.update({row[0]:[datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4]]})
-    conn.close()
-    return data
-
-def get_debit_transactions(username,id, pagination):
-    data = {}
-    conn = connect('data/'+username+'.sqlite3')
-    cursor = conn.execute("SELECT * FROM tbl_debit WHERE id>? AND id<=?",(id,id+pagination))
-    for row in cursor:
-        data.update((row[0],datetime.utcfromtimestamp(row[1]),row[2],row[3],row[4]))
-    conn.close()
-    return data
-
+    
 def get_transaction_count(username):
     count=0
     conn = connect("data/"+username+".sqlite3")
@@ -288,7 +270,41 @@ def get_all_users():
         data.append((row[0],row[1]))
     conn.close()
     return data
-    
+
+def get_cluster(username, table, cluster_index):
+    conn = connect('data/'+username+'.sqlite3')
+    cursor = None
+    if(table=='debit'):
+        cursor = conn.execute("SELECT id, transaction_date, details, debit_amount, balance_amount FROM tbl_debit WHERE cluster_index=?",(cluster_index,))
+    else:
+        cursor = conn.execute("SELECT id, transaction_date, details, credit_amount, balance_amount FROM tbl_credit WHERE cluster_index=?",(cluster_index,))
+    data = []
+    for row in cursor:
+        data.append((row[0],datetime.utcfromtimestamp(row[1]).strftime("%d %b %Y"),row[2],row[3],row[4]))
+    if(table=='debit'):
+        cursor = conn.execute("SELECT cluster_description FROM tbl_debit WHERE cluster_index=?",(cluster_index,))
+    else:
+        cursor = conn.execute("SELECT cluster_description FROM tbl_credit WHERE cluster_index=?",(cluster_index,)) 
+    raw_cluster_description = cursor.fetchone()
+    cluster_description = ""
+    if(raw_cluster_description):
+        cluster_description = raw_cluster_description[0]
+    conn.close()
+    return (data, cluster_description)
+
+def get_group_by(username,table):
+    conn = connect('data/'+username+'.sqlite3')   
+    cursor = None
+    if(table=="tbl_credit"):
+        cursor = conn.execute("SELECT cluster_index,cluster_description,SUM(credit_amount) FROM tbl_credit GROUP BY cluster_index,cluster_description")
+    else:
+        cursor = conn.execute("SELECT cluster_index,cluster_description, SUM(debit_amount) FROM tbl_debit GROUP BY cluster_index,cluster_description")
+    data = []
+    for row in cursor:
+        data.append((row[0],row[1],round(row[2],2)))
+    conn.close()
+    return data
+
 def update_clusters(table_name, keys, clusters,username):
     if(len(clusters)>0):
         conn = connect('data/'+username+'.sqlite3')

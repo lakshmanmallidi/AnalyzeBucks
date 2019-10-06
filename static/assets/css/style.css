@@ -1,8 +1,9 @@
 
 html,body{
-  height: 98%;
-  width: 98%;
+  height: 97%;
+  width: 99%;
 }
+
 /*--------------------------------------------------------------------------------------------------------*/
 .login {
   margin: 20px auto;
@@ -210,7 +211,27 @@ html,body{
   cursor: pointer;
 }
 .mytable tr:nth-child(even){background-color: #f2f2f2}
-
+/*-------------------------------------------------------------------------------------------------------------*/
 .sort-right-corner{
   float:right;
+}
+
+.nInput{
+  text-align: center;
+  width:10%;
+  margin-left:45%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.arrDiv{
+  float:left;
+  width:20%;
+  margin-left:40%;
+  margin-right:40%;
+  margin-bottom:1%;
+  margin-top:1%;
 }

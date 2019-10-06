@@ -6,6 +6,7 @@ from flask import Flask,\
     make_response,\
     jsonify,\
     send_from_directory
+from random import randint
 from os import path, mkdir
 from json import load, dump
 from dao import get_user_password,\
@@ -24,8 +25,13 @@ from dao import get_user_password,\
                 change_user_password, \
                 change_user_role, \
                 is_user, \
-                create_user
-from data_extractor import factory           
+                create_user, \
+                update_clusters, \
+                get_group_by, \
+                get_transactions, \
+                get_cluster
+from data_extractor import factory       
+from data_analyzer import segregate    
 from hashlib import sha256
 from jwt import encode, decode
 from functools import wraps
@@ -67,9 +73,62 @@ def logout(username, role):
     session.clear()
     return redirect(url_for("login"))
 
-@app.route("/get_transactions")
+def generateColorString(a):
+    backgroundColor = 'rgba('+str(randint(0,255))+","+str(randint(0,255))+","+str(randint(0,255))
+    borderColor = backgroundColor+",1)"
+    backgroundColor = backgroundColor+","+str(a)+")"
+    return (backgroundColor, borderColor)
+
+@app.route("/segregate")
 @session_checker
-def get_transactions(username,role):
+def segregation(username, role):
+    n_clusters = int(request.args["n"])
+    tableName = None
+    if(request.args["table"]=="debit"):
+        tableName = "tbl_debit"
+    else:
+        tableName = "tbl_credit"
+    data = get_transactions(tableName,username)
+    clusters, error_msg = segregate(list(data.values()), n_clusters)
+    if(error_msg==None):
+        update_clusters(tableName, list(data.keys()), clusters,username)
+        cluster_data = get_group_by(username,tableName)
+        data = []
+        for index, description, aggregate in cluster_data:
+            bg,bd = generateColorString(0.5)
+            data.append((str(index+1)+"."+description,aggregate,bg,bd))
+        return jsonify({"data":data})
+    else:
+        return jsonify({})
+
+@app.route("/segment")
+@session_checker
+def segment(username,role):
+    cluster_index = int(request.args['cluster_index'])-1
+    table = request.args['table']
+    segment_data, cluster_description = get_cluster(username, table, cluster_index)
+    labels = "[\""
+    data = "["
+    for e in segment_data:
+        labels = labels+e[1]+"\",\""
+        data = data+ str(e[3]) +","
+    labels = labels[:-2]+"]"
+    data= data[:-1]+"]"
+    bg,bd = generateColorString(0.5)
+    bg = "[\""+bg+"\"]"
+    bd = "[\""+bd+"\"]"
+    return render_template("segment_report.html",table_name=table, \
+                                            segment_data=segment_data,cluster_description=cluster_description, \
+                                            labels = labels, data= data, backgroundColor=bg, borderColor=bd)
+
+@app.route("/reports")
+@session_checker
+def reports(username, role):
+    return render_template("reports.html",role=role)
+
+@app.route("/get_more")
+@session_checker
+def get_more(username,role):
     if("page" in request.args):
         page = int(request.args["page"])
         data = get_all_transactions(username,(page*pagination)-pagination,pagination)

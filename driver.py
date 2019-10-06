@@ -9,8 +9,8 @@ def upload_files():
         f.close()
         data = StateBankIndia(raw_data)
         insert_into_tables(data,'lakshman')
-init_database()
-create_user('lakshman','harrypotter',0)
+#init_database()
+#create_user('lakshman','harrypotter',0)
 n_clusters = 10
 upload_files()
 data = get_transactions('tbl_debit','lakshman')

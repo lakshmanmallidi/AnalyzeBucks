@@ -1,0 +1,222 @@
+{% extends "template.html" %}
+{% block body %}
+  <div style="margin-left:40px;height: 100%;">
+    <div style="height:100%;width:49%;float:left;border-style:double;">
+      <center><h4 style="margin:1%;">Debit</h4></center>
+      <input type="number" class="nInput" id="debitN" value=0 onchange="postNval('debit','manual')" min=1>
+      <div class="arrDiv">
+        <button style="float:left;" onclick="postNval('debit','down')">&larr;</button>
+        <button style="float:right;" onclick="postNval('debit','up')">&rarr;</button>
+      </div>
+      <canvas id="debit_chart" width="100%" height="80%"></canvas>
+    </div>
+    <div style="height:100%;width:49%;float:right;border-style:double;">
+      <center><h4 style="margin:1%;">Credit</h4></center>
+      <input type="number" class="nInput" id="creditN" value=0 onchange="postNval('credit','manual')" min=1>
+      <div class="arrDiv">
+        <button style="float:left;" onclick="postNval('credit','down')">&larr;</button>
+        <button style="float:right;" onclick="postNval('credit','up')">&rarr;</button>
+      </div>
+      <canvas id="credit_chart" width="100%" height="70%"></canvas>
+      <!--<div style="overflow-y:auto; height:45%;clear:left;">
+        <table id="credits" class="mytable" rules='all'>
+          <thead>
+            <tr>
+              <th>Id </th>
+              <th>Transaction Date </th>
+              <th colspan="3">Transaction Details</th>
+              <th>Credit </th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="table_body">
+            {% for row in credits %}
+              <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td colspan="3">{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>-->
+    </div>
+    <script src="{{url_for('static', filename='assets/js/Chart.js')}}"></script>
+    <script>
+      var prevNvalDebit; 
+      var prevNvalCredit; 
+      function debitChartClick(evt){
+        
+        var firstPoint =debit_chart.getElementAtEvent(evt)[0];
+        if (firstPoint) {
+            var cluster_index =debit_chart.data.labels[firstPoint._index].split(".")[0];
+            window.open('\segment?cluster_index='+cluster_index+'&table=debit', '_blank');
+        }
+      }
+
+      function creditChartClick(evt){
+        var firstPoint =credit_chart.getElementAtEvent(evt)[0];
+        if (firstPoint) {
+            var cluster_index =credit_chart.data.labels[firstPoint._index].split(".")[0];
+            window.open('\segment?cluster_index='+cluster_index+'&table=credit', '_blank');
+        }
+      }
+
+      function postNval(table, type)
+      {
+        var nVal;
+        if(table=="debit"){
+          var nVal = parseInt(document.getElementById("debitN").value); 
+        }
+        else{
+          var nVal = parseInt(document.getElementById("creditN").value);
+        }
+
+        if(type=="up")
+        {
+          nVal = nVal+1;
+        }
+        else if(type=="down"){
+          if(nVal==1)
+            nVal = 1;
+          else
+            nVal = nVal-1;
+        }
+        else
+        {
+          nVal = nVal;
+        }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+              if (xmlhttp.status == 200) {
+                var clusters = JSON.parse(xmlhttp.responseText);
+                if('data' in clusters){
+                  if(table=="debit"){
+                    removeData(debit_chart);
+                    addData(debit_chart,clusters);
+                    document.getElementById("debitN").value=nVal;
+                    prevNvalDebit=nVal;
+                  }
+                  else{
+                    removeData(credit_chart);
+                    addData(credit_chart, clusters);
+                    document.getElementById("creditN").value=nVal;
+                    prevNvalCredit=nVal;
+                  }
+                }
+                else{
+                  if(table=="debit")
+                    document.getElementById("debitN").value=prevNvalDebit;
+                  else
+                    document.getElementById("creditN").value=prevNvalCredit;
+                  alert("Transactions cannot be segregated further!");
+                }
+              }
+            }
+        };
+        xmlhttp.open("GET", "\segregate?n="+nVal.toString()+"&table="+table, true);
+        xmlhttp.send();
+      }
+
+      function addData(chart, clusters) {
+         for(var i=0;i<clusters["data"].length;i++)
+         {
+           chart.data.labels.push(clusters["data"][i][0]);
+           chart.data.datasets[0].data.push(clusters["data"][i][1]);
+           chart.data.datasets[0].backgroundColor.push(clusters["data"][i][2]);
+           chart.data.datasets[0].borderColor.push(clusters["data"][i][3]);
+         }
+          chart.update();
+      }
+
+      function removeData(chart) {
+          chart.data.labels = [];
+          chart.data.datasets[0].data=[];
+          chart.data.datasets[0].data.backgroundColor=[];
+          chart.data.datasets[0].data.borderColor=[];
+          chart.update();
+      }
+
+      var debit_chart = new Chart(document.getElementById("debit_chart"), {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [{
+            data: [],
+            backgroundColor:[],
+            borderColor: [],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          legend:{
+            display:false
+          },
+          onClick:debitChartClick,
+          responsive: true,
+          scales: {
+            xAxes: [{
+              maxBarThickness: 20,
+              ticks: {
+                minRotation: 60,
+                maxRotation: 90
+              }
+            }],
+            yAxes: [{
+              type: "logarithmic",
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 10,
+                callback: function (value, index, values) {
+                    return Number(value.toString());//pass tick values as a string into Number function
+                }
+              }
+            }]
+          }
+        }
+      });
+
+      var credit_chart = new Chart(document.getElementById("credit_chart"), {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [{
+            data: [],
+            backgroundColor:[],
+            borderColor: [],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          legend:{
+            display:false
+          },
+          onClick:creditChartClick,
+          responsive: true,
+          scales: {
+            xAxes: [{
+              maxBarThickness: 20,
+              ticks: {
+                minRotation: 60,
+                maxRotation: 90
+              }
+            }],
+            yAxes: [{
+              type: "logarithmic",
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 10,
+                callback: function (value, index, values) {
+                    return Number(value.toString());//pass tick values as a string into Number function
+                }
+              }
+            }]
+          }
+        }
+      });
+    </script>
+  </div>
+{% endblock %}

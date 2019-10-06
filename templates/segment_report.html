@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>AnalyzeBucks</title>
+  <!--<link rel="stylesheet" href="../static/assets/css/style.css">-->
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}">
+</head>
+
+<body>
+    <center><h4 style="margin:0px;">{{cluster_description | safe}}</h4></center>
+    <input type="text" id="search_box" onkeyup="search()" placeholder="Search for transaction details">
+    <div style="overflow-y:auto; height:31%;">
+      <table id="segment" class="mytable" rules='all'>
+        <thead>
+          <tr>
+            <th onclick="sortNumericColumn(0)">Id<span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortChronologicalColumn(1)">Transaction Date <span class="sort-right-corner">&#8645;</span> </th>
+            <th onclick="sortAlphabeticColumn(2)" colspan="3">Transaction Details <span class="sort-right-corner">&#8645;</span></th>
+            {% if tableType=="debit" %}
+                <th onclick="sortNumericColumn(3)">Debits <span class="sort-right-corner">&#8645;</span> </th>
+            {% else %}
+                <th onclick="sortNumericColumn(3)">Credits <span class="sort-right-corner">&#8645;</span></th>
+            {% endif %}
+            <th onclick="sortNumericColumn(4)">Balance <span class="sort-right-corner">&#8645;</span></th>
+          </tr>
+        </thead>
+        <tbody id="table_body">
+          {% for row in segment_data %}
+            <tr>
+              <td>{{row[0]}}</td>
+              <td>{{row[1]}}</td>
+              <td colspan="3">{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <canvas id="myChart" width="100%" height="33%"></canvas>
+    <script src="{{url_for('static', filename='assets/js/Chart.js')}}"></script>
+    <script>
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search_box");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("segment");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } else {
+                tr[i].style.display = "none";
+                }
+            }       
+            }
+        }
+        function sortChronologicalColumn(n) {
+                    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("segment");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                if (new Date(x.innerHTML) > new Date(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+                } else if (dir == "desc") {
+                if (new Date(x.innerHTML) < new Date(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+            }
+            }        
+        }
+        function sortAlphabeticColumn(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("segment");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+                } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+            }
+            }
+        }
+        function sortNumericColumn(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("segment");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                if (parseInt(x.innerHTML,10) > parseInt(y.innerHTML,10)) {
+                    shouldSwitch = true;
+                    break;
+                }
+                } else if (dir == "desc") {
+                if (parseInt(x.innerHTML,10) < parseInt(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+            }
+            }
+        }
+        var myChart = new Chart(document.getElementById("myChart"), {
+        type: 'line',
+        data: {         
+          labels: {{ labels | safe }},
+          datasets: [{
+            borderColor: {{ borderColor | safe }},
+            backgroundColor: {{ backgroundColor | safe }},
+            fill: true,
+            data: {{ data | safe }}
+          }]
+        },
+        options: {
+          legend:{
+            display:false
+          },
+          responsive: true,
+          scales: {
+            xAxes: [{
+              ticks: {
+                minRotation: 60,
+                maxRotation: 90
+              }
+            }],
+            yAxes: [{
+              type: "logarithmic",
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 10,
+                callback: function (value, index, values) {
+                    return Number(value.toString());//pass tick values as a string into Number function
+                }
+              }
+            }]
+          }
+        }
+      });
+    </script>
+</body>
+
+</html>
