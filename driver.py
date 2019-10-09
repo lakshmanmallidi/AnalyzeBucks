@@ -10,14 +10,14 @@ def upload_files():
         data = StateBankIndia(raw_data)
         insert_into_tables(data,'lakshman')
 #init_database()
-#create_user('lakshman','harrypotter',0)
-n_clusters = 10
+create_user('lakshman','harrypotter',0)
+#n_clusters = 10
 upload_files()
-data = get_transactions('tbl_debit','lakshman')
+'''data = get_transactions('tbl_debit','lakshman')
 clusters, error_msg = segregate(list(data.values()), n_clusters)
 update_clusters('tbl_debit', list(data.keys()), clusters,'lakshman')
 print(error_msg)
 data = get_transactions('tbl_credit','lakshman')
 clusters, error_msg = segregate(list(data.values()), n_clusters)
 update_clusters('tbl_credit', list(data.keys()), clusters,'lakshman')
-print(error_msg)
+print(error_msg)'''

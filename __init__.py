@@ -106,12 +106,12 @@ def segregation(username, role):
 def segment(username,role):
     cluster_index = int(request.args['cluster_index'])-1
     table = request.args['table']
-    segment_data, cluster_description = get_cluster(username, table, cluster_index)
+    segment_data ,segment_data_graph, cluster_description = get_cluster(username, table, cluster_index)
     labels = "[\""
     data = "["
-    for e in segment_data:
-        labels = labels+e[1]+"\",\""
-        data = data+ str(e[3]) +","
+    for e in segment_data_graph:
+        labels = labels+e[0]+"\",\""
+        data = data+ str(e[1]) +","
     labels = labels[:-2]+"]"
     data= data[:-1]+"]"
     bg,bd = generateColorString(0.5)
@@ -250,6 +250,7 @@ def login():
         if(username):
             return redirect(url_for("upload"))
         else:
+            session.clear()
             return render_template("login.html",msg="Please login again!")
     else:   
         if(request.method == "POST"):

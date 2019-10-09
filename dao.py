@@ -278,9 +278,9 @@ def get_cluster(username, table, cluster_index):
         cursor = conn.execute("SELECT id, transaction_date, details, debit_amount, balance_amount FROM tbl_debit WHERE cluster_index=?",(cluster_index,))
     else:
         cursor = conn.execute("SELECT id, transaction_date, details, credit_amount, balance_amount FROM tbl_credit WHERE cluster_index=?",(cluster_index,))
-    data = []
+    segment_data = []
     for row in cursor:
-        data.append((row[0],datetime.utcfromtimestamp(row[1]).strftime("%d %b %Y"),row[2],row[3],row[4]))
+        segment_data.append((row[0],datetime.utcfromtimestamp(row[1]).strftime("%d %b %Y"),row[2],row[3],row[4]))
     if(table=='debit'):
         cursor = conn.execute("SELECT cluster_description FROM tbl_debit WHERE cluster_index=?",(cluster_index,))
     else:
@@ -289,8 +289,15 @@ def get_cluster(username, table, cluster_index):
     cluster_description = ""
     if(raw_cluster_description):
         cluster_description = raw_cluster_description[0]
+    segment_data_graph = []
+    if(table=='debit'):
+        cursor = conn.execute("SELECT  transaction_date, sum(debit_amount) FROM tbl_debit GROUP BY transaction_date HAVING cluster_index=?",(cluster_index,))
+    else:
+        cursor = conn.execute("SELECT transaction_date, sum(credit_amount) FROM tbl_credit GROUP BY transaction_date HAVING cluster_index=?",(cluster_index,))
+    for row in cursor:
+        segment_data_graph.append((datetime.utcfromtimestamp(row[0]).strftime("%d %b %Y"), row[1]))
     conn.close()
-    return (data, cluster_description)
+    return (segment_data,segment_data_graph,cluster_description)
 
 def get_group_by(username,table):
     conn = connect('data/'+username+'.sqlite3')   
