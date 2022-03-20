@@ -32,6 +32,38 @@ def StateBankIndia(raw_data):
         row_num = row_num+1
     return final_data
 
+def ICICI(raw_data):
+    def convert_date(raw_date):
+        return int(mktime(datetime.strptime(raw_date, "%d/%m/%Y").timetuple()))
+
+    formated_data = [row.split(",") for row in raw_data.split("\n")]
+    final_data = []
+    row_num = 1
+    while True:
+        if(len(formated_data[row_num]) >= 5):
+            transaction_date = convert_date(formated_data[row_num][0])
+            details = formated_data[row_num][1].strip()
+            if(formated_data[row_num][2] != "0"):
+                debit_amount = float(formated_data[row_num][2])
+            else:
+                debit_amount = ""
+            if(formated_data[row_num][3] != "0"):
+                credit_amount = float(formated_data[row_num][3])
+            else:
+                credit_amount = ""
+            if(formated_data[row_num][5] != " "):
+                balance_amount = float(formated_data[row_num][5])
+            else:
+                balance_amount = ""
+            final_data.append(
+                (transaction_date, details, debit_amount, credit_amount, balance_amount))
+        else:
+            break
+        row_num = row_num+1
+    return final_data
+
 def factory(bank_name):
     if(bank_name=='sbh'):
         return StateBankIndia
+    elif(bank_name=='icici'):
+        return ICICI
